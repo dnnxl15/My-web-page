@@ -1,0 +1,21 @@
+@font-face{
+    font-family: "yanone";
+    src: url("../fonts/yanone.ttf");
+}
+
+@font-face{
+    font-family: "finger";
+    src: url("../fonts/finger.ttf");
+}
+
+body{
+    font-family: "yanone", Arial, Arial, Helvetica;
+    font-size: 20px;
+    background: url("../img/pattern.png");
+    position: fixed;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
