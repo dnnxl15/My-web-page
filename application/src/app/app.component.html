@@ -1,8 +1,18 @@
-<h1> Projecto de Angular </h1>
-<ul>
-  <li><a [routerLink]="['/About-me']">About me</a></li>
-  <li><a [routerLink]="['/Contact']">Contact</a></li>
-  <li><a [routerLink]="['/Create-project']"> Create project</a></li>
-  <li><a [routerLink]="['/Projects']"> Project</a></li>
-</ul>
-<router-outlet></router-outlet>
+<header>
+  <ul>
+    <li><a [routerLink]="['/About-me']" [routerLinkActive]="['actived']">About me</a></li>
+    <li><a [routerLink]="['/Contact']"  [routerLinkActive]="['actived']">Contact</a></li>
+    <li id="logo"><a href="#"> DX</a></li>
+
+    <li><a [routerLink]="['/Create-project']" [routerLinkActive]="['actived']"> Create project</a></li>
+    <li><a [routerLink]="['/Projects']"  [routerLinkActive]="['actived']"> Project</a></li>
+  </ul>
+</header>
+
+<section id="content">
+  <router-outlet></router-outlet>
+</section>
+
+<footer>
+  Master en Javascript de Danny &copy;
+</footer>
