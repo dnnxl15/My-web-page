@@ -88,7 +88,7 @@ header a:hover, .actived{
 /* Contenedor principal */
 
 #content{
-   /* min-height: 700px;*/
+    min-height: 700px;
     width: 75%;
     margin: 0px auto;
     box-shadow: 0px 0px 40px black;
@@ -147,4 +147,54 @@ article.about{
 .about p{
     padding-top: 20px;
     padding-bottom: 30px;
+}
+
+/* Form section */
+.container{
+    padding: 50px;
+    padding-top: 10px;
+}
+
+.container h2{
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px; 
+}
+
+form{
+    width: 50%;
+}
+
+form label{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form textarea{
+    width: 80%;
+    padding: 5px;
+}
+
+form button,
+form input[type="submit"]{
+    display:block;
+    font-size: 17px;
+    padding: 10px;
+    margin-top: 15px;
+    color: white;
+    background: rgba(53, 103, 164, 1);
+    border: 1px solid rgba(13, 67, 133, 1);
+    cursor: pointer;
+}
+
+form button: hover,
+form input[type="submit"]:hover{
+    background: rgba(53, 103, 164, 0.8);
+    border: 1px solid rgba(13, 67, 133, 1);
 }
