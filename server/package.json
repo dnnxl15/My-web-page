@@ -1,0 +1,21 @@
+{
+  "name": "api-rest",
+  "version": "1.0.0",
+  "description": "Api Rest design by Danny Xie",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "strat": "nodemon index.js"
+  },
+  "author": "Danny Xie Li",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0",
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

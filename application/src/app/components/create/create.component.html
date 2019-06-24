@@ -1,34 +1,35 @@
 <div class="container">
-
-
   <h2>{{ title }}</h2>
   <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
     <p>
       <label for="name">Name</label>
-      <input type="text" name="name" #name="ngModel" [(ngModel)]="project.name"/>
+      <input type="text" name="name" #name="ngModel" [(ngModel)]="project.name" required />
+      <span class="form_error" *ngIf="name.touched && !name.valid">The name is obligatory</span>
     </p>
     <p>
-        <label for="description">Description</label>
-        <input type="text" name="description" #name="ngModel" [(ngModel)]="project.description"/>
-      </p>
-      <p>
-          <label for="Category">Category</label>
-          <input type="text" name="category" #name="ngModel" [(ngModel)]="project.category"/>
-        </p>
-        <p>
-            <label for="year">Year</label>
-            <input type="text" name="year" #name="ngModel" [(ngModel)]="project.year"/>
-          </p>
-
-          <p>
-              <label for="langs">Languages</label>
-              <input type="text" name="langs" #name="ngModel" [(ngModel)]="project.langs"/>
-            </p>
-            <p>
-                <label for="image">Image</label>
-      <input type="file" name="image" placeholder="Upload image"/>
-      <input type="submit" value="Send"/>
-
+      <label for="description">Description</label>
+      <input type="text" name="description" #name="ngModel" [(ngModel)]="project.description" required />
+      <span class="form_error" *ngIf="description.touched && !description.valid">The description is obligatory</span>
+    </p>
+    <p>
+      <label for="Category">Category</label>
+      <input type="text" name="category" #name="ngModel" [(ngModel)]="project.category" required />
+      <span class="form_error" *ngIf="category.touched && !category.valid">The category is obligatory</span>
+    </p>
+    <p>
+      <label for="year">Year</label>
+      <input type="text" name="year" #name="ngModel" [(ngModel)]="project.year" required />
+      <span class="form_error" *ngIf="year.touched && !year.valid">The year is obligatory</span>
+    </p>
+    <p>
+      <label for="language">Languages</label>
+      <input type="text" name="language" #name="ngModel" [(ngModel)]="project.language" required />
+      <span class="form_error" *ngIf="language.touched && !language.valid">The language is obligatory</span>
+    </p>
+    <p>
+      <label for="image">Image</label>
+      <input type="file" name="image" placeholder="Upload image" />
+      <input type="submit" value="Send" [disabled]="!projectForm.form.valid" />
     </p>
   </form>
 </div>
