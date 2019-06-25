@@ -1,3 +1,7 @@
+'use strict'
+
+var Project = require('../models/project');
+var fs = require('fs');
 
 var controller =
 {
@@ -93,6 +97,46 @@ var controller =
 
             return res.status(200).send({project: projectRemoved});
         });
+    },
+
+    uploadImage: function(req, res)
+    {
+        var projectId = req.params.id;
+        var fileName = 'Image doesnt upload';
+        if(req.files)
+        {
+            var filePath = req.files.image.path;
+            var fileSplit = filePath.split('\\');
+            var fileName = fileSplit[1];
+            var extSplit = fileName.split('\.');
+            var fileExt = extSplit[1];
+
+            if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
+            {
+                Project.findByIdAndUpdate(projectId, {image: fileName}, {new: true}, (err, projectUpdate) => {
+                    if(err) return res.status(200).send({message: "The image havent upload"});
+    
+                    if(!projectUpdate) return res.status(404).send({message: "The project no exits "})
+    
+                    return res.status(200).send({
+                        project: projectUpdate
+                    });
+                });
+            }
+            else
+            {
+                fs.unlink(filePath, (err) => 
+                {
+                    return res.status(200).send({message: "The extension is not valid"});
+                });
+            }
+        }
+        else
+        {
+            return res.status(200).send({
+                message: fileName
+            });
+        }
     }
 };
 
