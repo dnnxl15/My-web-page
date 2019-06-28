@@ -1,4 +1,3 @@
-'use strict'
 
 var Project = require('../models/project');
 var fs = require('fs');
@@ -21,7 +20,7 @@ var controller =
 
     saveProject: function(req, res)
     {
-        var project = new project();
+        var project = new Project();
         var params = req.body;
         project.name = params.name;
         project.description = params.description;

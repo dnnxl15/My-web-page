@@ -1,5 +1,13 @@
 <div class="container">
   <h2>{{ title }}</h2>
+  <div class="message sucess" *ngIf="status == 'success'">
+    The project has been created succesfully  <a href="#">See here</a>
+  </div>
+
+  <div class="message failed" *ngIf="status == 'failed'">
+    The project failed to create  
+  </div>
+
   <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
     <p>
       <label for="name">Name</label>
@@ -19,7 +27,7 @@
     <p>
       <label for="year">Year</label>
       <input type="text" name="year" #name="ngModel" [(ngModel)]="project.year" required />
-      <span class="form_error" *ngIf="year.touched && !year.valid">The year is obligatory</span>
+      <span class="form_error" *ngIf="year.touched && !(year.valid)">The year is obligatory</span>
     </p>
     <p>
       <label for="language">Languages</label>
@@ -28,7 +36,7 @@
     </p>
     <p>
       <label for="image">Image</label>
-      <input type="file" name="image" placeholder="Upload image" />
+      <input type="file" name="image" placeholder="Upload image" (change)="fileChangeEvent($event)"/>
       <input type="submit" value="Send" [disabled]="!projectForm.form.valid" />
     </p>
   </form>

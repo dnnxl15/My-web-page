@@ -1,12 +1,14 @@
 export class Project 
 {
     constructor(
-        public _id: string,
-        public name: string,
-        public description: string,
-        public category: string,
-        public language: string,
-        public image: string
+        public _id: String,
+        public name: String,
+        public description: String,
+        public category: String,
+        public language: String,
+        public image: String,
+        public year: Number
+
 
     )
     {
