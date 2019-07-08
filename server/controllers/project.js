@@ -20,14 +20,17 @@ var controller =
 
     saveProject: function(req, res)
     {
-        var project = new Project();
-        var params = req.body;
-        project.name = params.name;
-        project.description = params.description;
-        project.category = params.category;
-        project.year = params.year;
-        project.langs = params.langs;
-        project.image = null;
+        const { error } = validateLight(req.body); 
+        if (error) return res.status(400).send(error.details[0].message);
+
+        var project = new Project(_.pick(req.body, [
+            'name',
+            'description',
+            'category',
+            'year',
+            'langs',
+            'userCreate'
+        ]));
 
         project.save((err, projectStored) =>
         {
@@ -35,7 +38,14 @@ var controller =
 
             if(!projectStored) return res.status(404).send({message: 'Couldnt save the file'});
 
-            return res.status(200).send({project: projectStored});
+            return res.status(200).send(_.pick(project, [
+                'name',
+                'description',
+                'category',
+                'year',
+                'langs',
+                'userCreate'
+            ]));
         });
     },
 
@@ -57,11 +67,11 @@ var controller =
 
     getProjects: function(req, res)
     {
-        var projectId = req.params.id;
+        var userId = req.params.id;
 
         if(projectId == null) return res.status(404).send({message: 'The project doesnt exists'});
 
-        Project.find({}).sort('year').exe((err, project) => {
+        Project.find({ userCreated: userId }).exe((err, project) => {
 
             if(err) return res.status(500).send({message: "Error to get the documents"});
 

@@ -1,16 +1,27 @@
 
-var mongoose = require('mongoose');
-var app = require('./app');
-var port = 3700;
+const bodyParser = require('body-parser');
+const winston = require('winston');
+const express = require('express');
+const app = express();
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/portfolio')
-    .then(() => {
-        console.log("Conection to the database successful");
+app.use(bodyParser.urlencoded({extended:true, limit:'80mb', parameterLimit: 1000000}));
+app.use(bodyParser.json({limit:'50mb'}));
 
-        // Creacion del servidor
-        app.listen(port, () => {
-            console.log("Servidor corriendo correctamente en la url: localhost 3700");
-        });
-    })
-    .catch(err => console.log(err));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
+require('./startup/route')(app);
+require('./startup/logging')();
+require('./startup/db')();
+require('./startup/config')();
+//require('./startup/prod')();
+
+const port = process.env.PORT || 3200;
+const server = app.listen(port, () => winston.info(`Listening on port ${port}...`));
+
+module.exports = server;

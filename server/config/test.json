@@ -1,0 +1,4 @@
+{
+    "jwtPrivateKey": "MySecurePassword",
+    "db": "mongodb://localhost/portfolio_tests"
+}
